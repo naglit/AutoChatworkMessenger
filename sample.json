@@ -1,0 +1,9 @@
+{
+    "messages": [
+        {
+            "id":"remind",
+            "room_id":"000000000",
+            "body":"[To:12345678]XXX\nTesting"
+        }
+    ]
+}

@@ -1,10 +1,14 @@
+import os
 from os import read
 import requests
 import configparser
 
 # read config
 config = configparser.ConfigParser()
-config.read("message.cfg")
+backslash = ""
+if os.name == "nt": 
+    backslash = os.path.dirname(os.path.abspath(__file__)) + ".\\"
+config.read(backslash + "message.cfg")
 chatwork_config = config["chatwork"]
 
 def main():
@@ -21,7 +25,7 @@ def read_message():
     content = ""
 
     # read
-    with open('message.txt', encoding="utf-8") as f:
+    with open(backslash + 'message.txt', encoding="utf-8") as f:
         lines = f.readlines()
         for line in lines:
             if ("ROOMID" in line):
@@ -35,7 +39,7 @@ def read_message():
 def send_message(message):    
     url = chatwork_config["chatwork_url"] + '/rooms/' + message["roomid"] + '/messages?force=1'
     headers = { 'X-ChatWorkToken': chatwork_config["api_key"] }
-    params = { 'body': message["content"] }
+    params = { 'body': message["body"] }
 
     # send a request
     resp = requests.post(url,
