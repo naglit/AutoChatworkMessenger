@@ -1,4 +1,4 @@
 init:
-	mv sample.txt message.txt
-	mv sample.cfg message.cfg
-	mv sample.json messages.json
+	cp sample.txt message.txt
+	cp sample.cfg message.cfg
+	cp sample.json messages.json
