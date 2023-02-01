@@ -1,16 +1,11 @@
 import os, sys
-from os import read
-import requests
-import configparser
 import json
+from pychatworkAPI.pychatworkAPI import api as cwapi
 
 # read config
-config = configparser.ConfigParser()
 backslash = ""
 if os.name == "nt": 
     backslash = os.path.dirname(os.path.abspath(__file__)) + ".\\"
-config.read(backslash + "message.cfg")
-chatwork_config = config["chatwork"]
 
 def main():
     message = read_message(retrieve_arg())
@@ -30,20 +25,12 @@ def read_message(id):
         for message in messages:
             if message["id"] == id: return message
 
-
 def send_message(message):
     ''' send a message on Chatowork'''
     if message == None:
         return
-
-    url = chatwork_config["chatwork_url"] + '/rooms/' + message["room_id"] + '/messages?force=1'
-    headers = { 'X-ChatWorkToken': message["api_key"] }
-    params = { 'body': message["body"] }
-
-    # send a request
-    resp = requests.post(url,
-        headers=headers,
-        params=params)
+    chatwork = cwapi.Chatwork(message["api_key"])
+    chatwork.send_message(message["room_id"], message["body"])
 
 if __name__ == "__main__":
     main()
