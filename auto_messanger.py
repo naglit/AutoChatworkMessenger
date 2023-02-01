@@ -37,7 +37,7 @@ def send_message(message):
         return
 
     url = chatwork_config["chatwork_url"] + '/rooms/' + message["room_id"] + '/messages?force=1'
-    headers = { 'X-ChatWorkToken': chatwork_config["api_key"] }
+    headers = { 'X-ChatWorkToken': message["api_key"] }
     params = { 'body': message["body"] }
 
     # send a request

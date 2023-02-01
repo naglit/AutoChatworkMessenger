@@ -3,7 +3,8 @@
         {
             "id":"remind",
             "room_id":"000000000",
-            "body":"[To:12345678]XXX\nTesting"
+            "body":"[To:12345678]XXX\nTesting",
+            "api_key":"api_key_4_testing"
         }
     ]
 }
