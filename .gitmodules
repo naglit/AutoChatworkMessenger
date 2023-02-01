@@ -1,0 +1,3 @@
+[submodule "pychatworkAPI"]
+	path = pychatworkAPI
+	url = https://github.com/dc-aichara/pychatworkAPI.git
